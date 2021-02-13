@@ -25,8 +25,8 @@ public class PassControll {
 	ServicePass service;
 
 	@GetMapping("/{pass}")
-	public ResponseEntity<?> validatePass(HttpServletRequest request, @PathVariable String pass) {
-		String response = service.validPass(pass, ValidPass);
+	public ResponseEntity<?> validatePass(HttpServletRequest request, @PathVariable String password) {
+		String response = service.validPassword(password, ValidPass);
 		if (response.equals(ValidPass)) {
 
 			DataPresenter data = new DataPresenter(ValidPass);

@@ -25,7 +25,7 @@ class PassApplicationTests {
 
 		String pass = "Ao@23ertuio";
 		Object validpass = "SENHA VALIDA";
-		assertTrue(service.validPass(pass, validpass).isEmpty());
+		assertTrue(service.validPassword(pass, validpass).isEmpty());
 		assertTrue(pass.length() > 0);
 		assertTrue(pass.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()-+]).{9,}$"));
 		assertTrue(pass.matches("(?=.*?[A-Z]).{1,}$"));

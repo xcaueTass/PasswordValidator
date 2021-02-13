@@ -5,43 +5,43 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServicePass {
 
-	private static final int TamanhoMinimoPass = 9;
-	private static final int TamanhoMinimo = 1;
+	private static final int TAMANHOMAXIMO = 9;
+	private static final int TAMANHOMINIMO = 1;
 
-	public String validPass(String pass, Object validpass) {
+	public String validPassword(String password, Object validpass) {
 
-		String passw = validpass.toString();
+		String passwordValidate = validpass.toString();
 
-		if (!checkPass(pass)) {
-			passw = "SENHA INVALIDA";
+		if (!checkPass(password)) {
+			passwordValidate = "SENHA INVALIDA";
 
-			if (!checkLettersUpperCase(pass)) {
-				passw = passw + " TER AO MENOS 1 LETRA MAIUSCULA -";
+			if (!checkLettersUpperCase(password)) {
+				passwordValidate = passwordValidate + " TER AO MENOS 1 LETRA MAIUSCULA -";
 			}
-			if (!checkLettersLowerCase(pass)) {
-				passw = passw + " TER AO MENOS 1 LETRA MINUSCULA -";
+			if (!checkLettersLowerCase(password)) {
+				passwordValidate = passwordValidate + " TER AO MENOS 1 LETRA MINUSCULA -";
 			}
-			if (!checkSpecialCharacter(pass)) {
-				passw = passw + " TER 1 CARACTER";
+			if (!checkSpecialCharacter(password)) {
+				passwordValidate = passwordValidate + " TER 1 CARACTER";
 			}
 
 		}
-		if (!checkSize(pass)) {
-			passw = passw + " TER AO MENOS 1 DIGITO -";
+		if (!checkSize(password)) {
+			passwordValidate = passwordValidate + " TER AO MENOS 1 DIGITO -";
 		}
-		if (!checkSizePass(pass)) {
-			passw = passw + " TER 9 OU MAIS CARACTERES -";
-		}
-
-		if (!checkRepeatedCharacter(pass)) {
-			passw = passw + " NÃO POSSUIR CARACTERES REPETIDOS -";
+		if (!checkSizePass(password)) {
+			passwordValidate = passwordValidate + " TER 9 OU MAIS CARACTERES -";
 		}
 
-		if (checkSpace(pass)) {
-			passw = passw + " NAO CONTER ESPAÇOS";
+		if (!checkRepeatedCharacter(password)) {
+			passwordValidate = passwordValidate + " NÃO POSSUIR CARACTERES REPETIDOS -";
 		}
 
-		return passw;
+		if (checkSpace(password)) {
+			passwordValidate = passwordValidate + " NAO CONTER ESPAÇOS";
+		}
+
+		return passwordValidate;
 	}
 
 	private boolean checkPass(String pass) {
@@ -50,11 +50,11 @@ public class ServicePass {
 	}
 
 	private boolean checkSizePass(String pass) {
-		return pass.length() >= TamanhoMinimoPass;
+		return pass.length() >= TAMANHOMAXIMO;
 	}
 
 	private boolean checkSize(String pass) {
-		return pass.length() >= TamanhoMinimo;
+		return pass.length() >= TAMANHOMINIMO;
 	}
 
 	private boolean checkLettersUpperCase(String pass) {
