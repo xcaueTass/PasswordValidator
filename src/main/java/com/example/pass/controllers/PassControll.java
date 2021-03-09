@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +22,19 @@ import com.example.pass.services.ServicePass;
 @RequestMapping(value = "/validate")
 public class PassControll {
 
+	private static final Logger logger = LoggerFactory.getLogger(PassControll.class);
+
 	private static final Object VALIDPASSWORD = "SENHA VALIDA";
 	@Autowired
 	ServicePass service;
 
 	@GetMapping("/{password}")
 	public ResponseEntity<?> validatePassword(HttpServletRequest request, @PathVariable String password) {
+		logger.info("Validando regras de senha");
 		String response = service.validPassword(password, VALIDPASSWORD);
 		if (response.equals(VALIDPASSWORD)) {
 
+			logger.info("senha atende os requisítos");
 			DataPresenter data = new DataPresenter(VALIDPASSWORD);
 			return ResponseEntity.status(HttpStatus.OK).body(data);
 
@@ -40,6 +46,7 @@ public class PassControll {
 			customError.setStatus(HttpStatus.BAD_REQUEST.value());
 			customError.setTimestamp(LocalDateTime.now());
 
+			logger.error(String.format("Senha nao atende os requisitos: %s", customError));
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(customError);
 
 		}
