@@ -23,15 +23,15 @@ class PassApplicationTests {
 	void testServiceRules() {
 		ServicePass service = new ServicePass();
 
-		String pass = "Ao@23ertuio";
-		Object validpass = "SENHA VALIDA";
-		assertTrue(service.validPassword(pass, validpass).isEmpty());
-		assertTrue(pass.length() > 0);
-		assertTrue(pass.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()-+]).{9,}$"));
-		assertTrue(pass.matches("(?=.*?[A-Z]).{1,}$"));
-		assertTrue(pass.matches("(?=.*?[a-z]).{1,}$"));
-		assertTrue(pass.matches("(?=.*?[0-9]).{1,}$"));
-		assertFalse(pass.indexOf(" ") >= 0);
+		String password = "Ao@23ertuio";
+		Object validPassword = "SENHA VALIDA";
+		assertTrue(service.validPassword(password, validPassword).isEmpty());
+		assertTrue(password.length() > 0);
+		assertTrue(password.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()-+]).{9,}$"));
+		assertTrue(password.matches("(?=.*?[A-Z]).{1,}$"));
+		assertTrue(password.matches("(?=.*?[a-z]).{1,}$"));
+		assertTrue(password.matches("(?=.*?[0-9]).{1,}$"));
+		assertFalse(password.indexOf(" ") >= 0);
 	}
 
 	@Test
@@ -41,7 +41,7 @@ class PassApplicationTests {
 		customError.setPath("Erro: SENHA INVALIDA");
 		customError.setStatus(HttpStatus.BAD_REQUEST.value());
 		customError.setTimestamp(LocalDateTime.now());
-		
+
 		assertTrue(customError.getMessage().length() > 1);
 		assertTrue(customError.getPath().length() > 1);
 		assertThat(customError.getStatus());

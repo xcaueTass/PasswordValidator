@@ -24,8 +24,8 @@ public class PassControll {
 	@Autowired
 	ServicePass service;
 
-	@GetMapping("/{pass}")
-	public ResponseEntity<?> validatePass(HttpServletRequest request, @PathVariable String password) {
+	@GetMapping("/{password}")
+	public ResponseEntity<?> validatePassword(HttpServletRequest request, @PathVariable String password) {
 		String response = service.validPassword(password, ValidPass);
 		if (response.equals(ValidPass)) {
 

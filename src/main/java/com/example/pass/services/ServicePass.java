@@ -5,14 +5,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServicePass {
 
-	private static final int TAMANHOMAXIMO = 9;
-	private static final int TAMANHOMINIMO = 1;
+	private static final int TamanhoMinimoPassword = 9;
+	private static final int TamanhoMinimo = 1;
 
-	public String validPassword(String password, Object validpass) {
+	public String validPassword(String password, Object validPassword) {
 
-		String passwordValidate = validpass.toString();
+		String passwordValidate = validPassword.toString();
 
-		if (!checkPass(password)) {
+		if (!checkpassword(password)) {
 			passwordValidate = "SENHA INVALIDA";
 
 			if (!checkLettersUpperCase(password)) {
@@ -29,7 +29,7 @@ public class ServicePass {
 		if (!checkSize(password)) {
 			passwordValidate = passwordValidate + " TER AO MENOS 1 DIGITO -";
 		}
-		if (!checkSizePass(password)) {
+		if (!checkSizepassword(password)) {
 			passwordValidate = passwordValidate + " TER 9 OU MAIS CARACTERES -";
 		}
 
@@ -44,47 +44,47 @@ public class ServicePass {
 		return passwordValidate;
 	}
 
-	private boolean checkPass(String pass) {
+	private boolean checkpassword(String password) {
 
-		return (pass.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()-+]).{9,}$"));
+		return (password.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()-+]).{9,}$"));
 	}
 
-	private boolean checkSizePass(String pass) {
-		return pass.length() >= TAMANHOMAXIMO;
+	private boolean checkSizepassword(String password) {
+		return password.length() >= TamanhoMinimoPassword;
 	}
 
-	private boolean checkSize(String pass) {
-		return pass.length() >= TAMANHOMINIMO;
+	private boolean checkSize(String password) {
+		return password.length() >= TamanhoMinimo;
 	}
 
-	private boolean checkLettersUpperCase(String pass) {
-		return pass.matches("(?=.*?[A-Z]).{1,}$");
-
-	}
-
-	private boolean checkLettersLowerCase(String pass) {
-		return pass.matches("(?=.*?[a-z]).{1,}$");
+	private boolean checkLettersUpperCase(String password) {
+		return password.matches("(?=.*?[A-Z]).{1,}$");
 
 	}
 
-	private boolean checkSpecialCharacter(String pass) {
-		return pass.matches("(?=.*?[!@#$%^&*()-+]).{1,}$");
+	private boolean checkLettersLowerCase(String password) {
+		return password.matches("(?=.*?[a-z]).{1,}$");
 
 	}
 
-	private boolean checkSpace(String pass) {
-		return pass.indexOf(" ") >= 0;
+	private boolean checkSpecialCharacter(String password) {
+		return password.matches("(?=.*?[!@#$%^&*()-+]).{1,}$");
+
 	}
 
-	private boolean checkRepeatedCharacter(String pass) {
-		return validLetterToLetter(pass);
+	private boolean checkSpace(String password) {
+		return password.indexOf(" ") >= 0;
 	}
 
-	private boolean validLetterToLetter(String pass) {
-		for (int i = 0; i < pass.length(); i++) {
-			for (int j = i + 1; j < pass.length(); j++) {
+	private boolean checkRepeatedCharacter(String password) {
+		return validLetterToLetter(password);
+	}
 
-				if (pass.charAt(i) == pass.charAt(j)) {
+	private boolean validLetterToLetter(String password) {
+		for (int i = 0; i < password.length(); i++) {
+			for (int j = i + 1; j < password.length(); j++) {
+
+				if (password.charAt(i) == password.charAt(j)) {
 					return false;
 				} else {
 					continue;
