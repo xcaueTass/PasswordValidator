@@ -3,6 +3,7 @@ package com.example.pass;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
@@ -23,15 +24,17 @@ class PassApplicationTests {
 	void testServiceRules() {
 		ServicePass service = new ServicePass();
 
-		String password = "Ao@23ertuio";
+		String password = "AbTp9!fok";
 		Object validPassword = "SENHA VALIDA";
-		assertTrue(service.validPassword(password, validPassword).isEmpty());
+		assertFalse(password.isEmpty());
+		assertEquals("SENHA VALIDA", validPassword);
 		assertTrue(password.length() > 0);
 		assertTrue(password.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()-+]).{9,}$"));
 		assertTrue(password.matches("(?=.*?[A-Z]).{1,}$"));
 		assertTrue(password.matches("(?=.*?[a-z]).{1,}$"));
 		assertTrue(password.matches("(?=.*?[0-9]).{1,}$"));
 		assertFalse(password.indexOf(" ") >= 0);
+		assertEquals("SENHA VALIDA", (service.validPassword(password, validPassword)));
 	}
 
 	@Test
@@ -46,6 +49,7 @@ class PassApplicationTests {
 		assertTrue(customError.getPath().length() > 1);
 		assertThat(customError.getStatus());
 		assertThat(customError.getTimestamp());
+
 	}
 
 }
