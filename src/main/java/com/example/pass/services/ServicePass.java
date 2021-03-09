@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServicePass {
 
-	private static final int TamanhoMinimoPassword = 9;
-	private static final int TamanhoMinimo = 1;
+	private static final int MAXIMUMSIZE = 9;
+	private static final int MINIMUMSIZE = 1;
 
 	public String validPassword(String password, Object validPassword) {
 
@@ -50,11 +50,11 @@ public class ServicePass {
 	}
 
 	private boolean checkSizepassword(String password) {
-		return password.length() >= TamanhoMinimoPassword;
+		return password.length() >= MAXIMUMSIZE;
 	}
 
 	private boolean checkSize(String password) {
-		return password.length() >= TamanhoMinimo;
+		return password.length() >= MINIMUMSIZE;
 	}
 
 	private boolean checkLettersUpperCase(String password) {

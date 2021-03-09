@@ -20,16 +20,16 @@ import com.example.pass.services.ServicePass;
 @RequestMapping(value = "/validate")
 public class PassControll {
 
-	private static final Object ValidPass = "SENHA VALIDA";
+	private static final Object VALIDPASSWORD = "SENHA VALIDA";
 	@Autowired
 	ServicePass service;
 
 	@GetMapping("/{password}")
 	public ResponseEntity<?> validatePassword(HttpServletRequest request, @PathVariable String password) {
-		String response = service.validPassword(password, ValidPass);
-		if (response.equals(ValidPass)) {
+		String response = service.validPassword(password, VALIDPASSWORD);
+		if (response.equals(VALIDPASSWORD)) {
 
-			DataPresenter data = new DataPresenter(ValidPass);
+			DataPresenter data = new DataPresenter(VALIDPASSWORD);
 			return ResponseEntity.status(HttpStatus.OK).body(data);
 
 		} else {
