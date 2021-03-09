@@ -24,13 +24,7 @@ public class PassControllTest extends PassApplicationTests {
 
 	@Test
 	public void testGETIndexSalarioMinimoController() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/validate")).andExpect(MockMvcResultMatchers.status().isOk());
-	}
-
-	@Test
-	public void testGETSaveSalarioMinimoController() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/validate/{pass}"))
-				.andExpect(MockMvcResultMatchers.model().attributeExists("AbTp9!fok"))
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/validate/AbTp9!fok"))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
